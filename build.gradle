@@ -1,5 +1,7 @@
+//buildscript中的声明是gradle脚本自身需要使用的资源
 buildscript {
 	repositories {
+		maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 		gradlePluginPortal()
 		maven { url "https://repo.spring.io/plugins-release" }
 	}
@@ -148,6 +150,7 @@ configure(allprojects) { project ->
 	}
 
 	repositories {
+		maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 		mavenCentral()
 		maven { url "https://repo.spring.io/libs-spring-framework-build" }
 	}
