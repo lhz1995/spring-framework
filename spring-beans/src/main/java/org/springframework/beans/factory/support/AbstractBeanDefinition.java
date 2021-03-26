@@ -140,64 +140,141 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	@Nullable
 	private volatile Object beanClass;
 
+	/**
+	 *  bean 的作用范围，对应 bean 属性scope
+	 */
 	@Nullable
 	private String scope = SCOPE_DEFAULT;
 
+	/**
+	 *  是否抽象
+	 */
 	private boolean abstractFlag = false;
 
+	/**
+	 *  是否延迟加载
+	 */
 	private boolean lazyInit = false;
 
+	/**
+	 *  自动注入模式，对应bean 属性 autowire
+	 */
 	private int autowireMode = AUTOWIRE_NO;
 
+	/**
+	 *  依赖检查， spring 3.0 后弃用
+	 */
 	private int dependencyCheck = DEPENDENCY_CHECK_NONE;
 
+	/**
+	 *  用来表示一个 bean的实例化依靠另一个bean 先实例化， 对应bean属性depend-on
+	 */
 	@Nullable
 	private String[] dependsOn;
 
+	/**
+	 *  autowire-candidate 属性设置为false，这样容器在查找自动装配对象是，
+	 *  将不考虑该bean, 即它不会被考虑作为其他bean自动装配的候选者，但是该bean本身还是可以使用自动装配来注入其他bean的
+	 */
 	private boolean autowireCandidate = true;
 
+	/**
+	 *  自动装配时当出现多个bean候选者时， 将作为首选者，对应bean 属性primary
+	 */
 	private boolean primary = false;
 
+	/**
+	 *  用于记录qualifier，对应子元素 qualifier
+	 */
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
 	@Nullable
 	private Supplier<?> instanceSupplier;
 
+	/**
+	 *  允许访问非公开的构造器和方法，程序设置
+	 */
 	private boolean nonPublicAccessAllowed = true;
 
+	/**
+	 *  是否已一种宽松的模式解析构造函数，默认为true, 如果为false,则在如下情况:
+	 *   interface ITest() {}
+	 *   class ITestImpl implements ITest();
+	 *   class Main{
+	 *       Main(ITest i) {}
+	 *       Main(ITestImpl i){}
+	 *   }
+	 * 抛出异常，因为Spring 无法准确定位那个构造函数，程序设置
+	 */
 	private boolean lenientConstructorResolution = true;
 
+	/**
+	 *  对应bean 属性factory-bean
+	 */
 	@Nullable
 	private String factoryBeanName;
 
 	@Nullable
 	private String factoryMethodName;
 
+	/**
+	 *  记录构造函数注入属性， 对应bean属性 constructor-arg
+	 */
 	@Nullable
 	private ConstructorArgumentValues constructorArgumentValues;
 
+	/**
+	 *  普通属性集合
+	 */
 	@Nullable
 	private MutablePropertyValues propertyValues;
 
+	/**
+	 *  方法重写的持有者，记录 lookup-method, replaced-method 元素
+	 */
 	private MethodOverrides methodOverrides = new MethodOverrides();
 
+	/**
+	 *  初始化方法， bean 属性 init-method
+	 */
 	@Nullable
 	private String initMethodName;
 
+	/**
+	 *  销毁方法 destroy-method
+	 */
 	@Nullable
 	private String destroyMethodName;
 
+	/**
+	 *  是否执行init-method
+	 */
 	private boolean enforceInitMethod = true;
 
+	/**
+	 *  是否执行 destroy-method
+	 */
 	private boolean enforceDestroyMethod = true;
 
+	/**
+	 *  是否是用户定义的而不是应用程序本身创建的，创建AOP时候为true
+	 */
 	private boolean synthetic = false;
 
+	/**
+	 *  定义这个bean的应用， ROLE_APPLICATION：用户,ROLE_SUPPORT：某些复杂配置的一部分， ROLE_INFRASTRUCTURE: 完全内部使用
+	 */
 	private int role = BeanDefinition.ROLE_APPLICATION;
 
+	/**
+	 *  bean 的描述
+	 */
 	@Nullable
 	private String description;
 
+	/**
+	 *  这个bean定义的资源
+	 */
 	@Nullable
 	private Resource resource;
 

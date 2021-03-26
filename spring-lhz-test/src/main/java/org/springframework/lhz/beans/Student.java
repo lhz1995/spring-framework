@@ -1,6 +1,9 @@
 package org.springframework.lhz.beans;
 
-public class Student {
+/**
+ *  测试是否引入spring
+ */
+public class Student extends User {
 	private String name;
 	private Integer age;
 
@@ -18,6 +21,11 @@ public class Student {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	@Override
+	public void showMe() {
+		System.out.println("i am student");
 	}
 
 	@Override
